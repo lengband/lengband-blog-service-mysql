@@ -4,12 +4,10 @@ const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
-    const { ctx } = this;
-    ctx.body = 'hi, egg';
-  }
-  async list() {
-    const { ctx } = this;
-    ctx.body = '<h1>lengband blog list</h1>';
+    // 获取用户表的数据
+    const result = await this.app.mysql.get('blog_content', {});
+    console.log(result);
+    this.ctx.body = result;
   }
 }
 
