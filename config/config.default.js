@@ -41,6 +41,16 @@ module.exports = appInfo => {
     // load into agent, default is close
     agent: false,
   };
+  config.security = {
+    csrf: {
+      enable: false
+    },
+    domainWhiteList: ['*'],
+  }
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,POST,PUT,DELETE,PATCH,OPTIONS'
+  }
   return {
     ...config,
     ...userConfig,
