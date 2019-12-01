@@ -32,7 +32,7 @@ module.exports = appInfo => {
       // username
       user: 'root',
       // password
-      password: 'wangpeng123456',
+      password: 'wangpeng',
       // database
       database: 'react_blog',
     },
@@ -48,7 +48,8 @@ module.exports = appInfo => {
     domainWhiteList: ['*'],
   }
   config.cors = {
-    origin: '*',
+    origin: 'http://localhost:3000',
+    credentials: true, // 运行 cookie 跨越
     allowMethods: 'GET,HEAD,POST,PUT,DELETE,PATCH,OPTIONS'
   }
   return {
