@@ -1,13 +1,13 @@
-'use strict';
+'use strict'
 
-const Controller = require('egg').Controller;
+const Controller = require('egg').Controller
 
 class HomeController extends Controller {
   async index() {
-    this.ctx.body = 'lengband-blog-service index';
+    this.ctx.body = 'lengband-blog-service index'
   }
   async getArticleList() {
-    let sql = 'SELECT article.id as id,' +
+    const sql = 'SELECT article.id as id,' +
       'article.title as title,' +
       'article.introduce as introduce,' +
       'article.addTime as addTime,' +
@@ -17,13 +17,13 @@ class HomeController extends Controller {
       'FROM article LEFT JOIN type ON article.type_id = type.id'
     const results = await this.app.mysql.query(sql)
     this.ctx.body = {
-      data: results
+      data: results,
     }
   }
   async getArticleById() {
-    //先配置路由的动态传值，然后再接收值
-    let id = this.ctx.params.id
-    let sql = 'SELECT article.id as id,' +
+    // 先配置路由的动态传值，然后再接收值
+    const id = this.ctx.params.id
+    const sql = 'SELECT article.id as id,' +
       'article.title as title,' +
       'article.introduce as introduce,' +
       'article.article_content as article_content,' +
@@ -37,15 +37,15 @@ class HomeController extends Controller {
     const result = await this.app.mysql.query(sql)
     this.ctx.body = { data: result }
   }
-  //得到类别名称和编号
+  // 得到类别名称和编号
   async getTypeInfo() {
     const result = await this.app.mysql.select('type')
     this.ctx.body = { data: result }
   }
-  //根据类别ID获得文章列表
+  // 根据类别ID获得文章列表
   async getListById() {
-    let id = this.ctx.params.id
-    let sql = 'SELECT article.id as id,' +
+    const id = this.ctx.params.id
+    const sql = 'SELECT article.id as id,' +
       'article.title as title,' +
       'article.introduce as introduce,' +
       'article.addTime as addTime,' +
@@ -58,4 +58,4 @@ class HomeController extends Controller {
   }
 }
 
-module.exports = HomeController;
+module.exports = HomeController

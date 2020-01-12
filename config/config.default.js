@@ -1,6 +1,6 @@
 /* eslint valid-jsdoc: "off" */
 
-'use strict';
+'use strict'
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -10,18 +10,18 @@ module.exports = appInfo => {
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = exports = {};
+  const config = exports = {}
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1571844276159_6727';
+  config.keys = appInfo.name + '_1571844276159_6727'
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = []
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
-  };
+  }
   config.mysql = {
     // database configuration
     client: {
@@ -40,20 +40,20 @@ module.exports = appInfo => {
     app: true,
     // load into agent, default is close
     agent: false,
-  };
+  }
   config.security = {
     csrf: {
-      enable: false
+      enable: false,
     },
-    domainWhiteList: ['*'],
+    domainWhiteList: [ '*' ],
   }
   config.cors = {
     origin: 'http://localhost:3000',
     credentials: true, // 运行 cookie 跨越
-    allowMethods: 'GET,HEAD,POST,PUT,DELETE,PATCH,OPTIONS'
+    allowMethods: 'GET,HEAD,POST,PUT,DELETE,PATCH,OPTIONS',
   }
   return {
     ...config,
     ...userConfig,
-  };
-};
+  }
+}
