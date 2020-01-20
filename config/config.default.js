@@ -48,8 +48,10 @@ module.exports = appInfo => {
     domainWhiteList: [ '*' ],
   }
   config.cors = {
-    origin: 'http://localhost:3000',
-    credentials: true, // 运行 cookie 跨越
+    origin: app => app.request.header.origin, // 想要在 credentials 的情况下实现 * 的效果，要动态获取 origin
+    // origin: 'http://localhost:3001',
+    // origin: '*', // 浏览器端 withCredentials: true 的情况下不能设置为*
+    credentials: true, // 允许携带cookies
     allowMethods: 'GET,HEAD,POST,PUT,DELETE,PATCH,OPTIONS',
   }
   return {
