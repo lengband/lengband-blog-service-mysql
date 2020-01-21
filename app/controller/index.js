@@ -1,8 +1,8 @@
 'use strict'
 
-const Controller = require('egg').Controller
+const EggController = require('egg').Controller
 
-class MainController extends Controller {
+class Controller extends EggController {
 
   // 判断用户名密码是否正确
   async checkLogin() {
@@ -89,9 +89,23 @@ class MainController extends Controller {
   }
 
   async index() {
-    // 首页的文章列表数据
-    this.ctx.body = 'hi api'
+    this.ctx.body = 'lengband-blog-service index'
+  }
+
+  // 根据类别ID获得文章列表
+  async getListById() {
+    const id = this.ctx.params.id
+    const sql = 'SELECT article.id as id,' +
+      'article.title as title,' +
+      'article.introduce as introduce,' +
+      'article.create_time as create_time,' +
+      'article.view_count as view_count ,' +
+      'type.typeName as typeName ' +
+      'FROM article LEFT JOIN type ON article.type_id = type.Id ' +
+      'WHERE type_id=' + id
+    const result = await this.app.mysql.query(sql)
+    this.ctx.body = { data: result }
   }
 }
 
-module.exports = MainController
+module.exports = Controller
